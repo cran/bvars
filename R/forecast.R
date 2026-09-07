@@ -63,6 +63,8 @@ forecast.PosteriorBVAR = function(
     ...
 ) {
   
+  stopifnot("Argument horizon must be a positive integer number." = horizon > 0 & horizon %% 1 == 0)
+  
   posterior_Sigma = object$posterior$Sigma
   posterior_A     = object$posterior$A
   T               = ncol(object$last_draw$data_matrices$X)
@@ -111,6 +113,9 @@ forecast.PosteriorBVAR = function(
     posterior_h_T   = object$posterior$h[T,]
     posterior_rho   = object$posterior$rho
     posterior_omega = object$posterior$omega
+    if (!object$last_draw$get_centred_sv()) {
+      posterior_h_T = posterior_omega * posterior_h_T
+    }
     
     forecast_sigma2 = .Call(`_bvars_forecast_sigma2_sv1`, 
                             posterior_h_T, posterior_rho, posterior_omega, horizon
@@ -138,13 +143,6 @@ forecast.PosteriorBVAR = function(
                       horizon
   ) # END .Call
   
-  SS                  = dim(fore$forecasts)[3]
-  forecast_covariance = array(NA, c(N, N, horizon, SS))
-  for (s in 1:SS) forecast_covariance[,,,s] = fore$forecast_cov[s,][[1]]
-  fore$forecast_covariance = forecast_covariance
-  
-  fore$Y          = Y
-  class(fore)     = "Forecasts"
-  
+  fore = specify_forecasts$new(fore, Y)
   return(fore)
 } # END forecast.PosteriorBVARGIG

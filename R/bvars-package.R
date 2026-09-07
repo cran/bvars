@@ -23,7 +23,8 @@
 #' @description 
 #' Provides fast and efficient procedures for Bayesian estimation and forecasting 
 #' using state-of-the-art Vector Autoregressions. This package includes the model 
-#' proposed by Chan (2020) <doi:10.1080/07350015.2018.1451336>, that is, a 
+#' proposed by Shang, Wang, Woźniak (2026) <doi:10.48550/arXiv.2608.28087> and 
+#' Chan (2020) <doi:10.1080/07350015.2018.1451336>, that is, a 
 #' Bayesian Vector Autoregression with Minnesota priors and a flexible structure 
 #' of the error term specification. The latter includes: conditional multivariate 
 #' normal or Student’s t distributions, as well as homoskedastic or heteroskedastic 
@@ -95,7 +96,7 @@
 #' @docType package
 #' @useDynLib bvars, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
-#' @importFrom bsvars estimate specify_data_matrices compute_variance_decompositions compute_fitted_values
+#' @importFrom bsvars estimate specify_data_matrices specify_forecasts compute_variance_decompositions compute_fitted_values
 #' @importFrom generics forecast
 #' @importFrom R6 R6Class
 #' @importFrom RcppTN rtn
@@ -114,6 +115,20 @@
 #' Chan (2020) Large Bayesian VARs: A Flexible Kronecker Error Covariance Structure,
 #' Journal of Business and Economic Statistics, 38(1), 68--79,
 #' <doi:10.1080/07350015.2018.1451336>.
+#' 
+#' Shang F, Wang X, Woźniak T (2026) A Design Concept of Forecasting Software 
+#' for Normalized Vector Autoregressions with Fat Tails and Stochastic Volatility,
+#' University of Melbourne Working Paper, 1--20,
+#' <doi:10.48550/arXiv.2608.28087>.
+#' 
+#' Wang X, Woźniak T (2026). bsvarSIGNs: Bayesian SVARs with Sign, Zero, and 
+#' Narrative Restrictions. R package version 3.0, \doi{10.32614/CRAN.package.bsvarSIGNs}.
+#' 
+#' Woźniak T (2026) bpvars: Forecasting with Bayesian Panel Vector Autoregressions. 
+#' R package version 2.0, \doi{10.32614/CRAN.package.bpvars}.
+#' 
+#' Woźniak (2026) bsvars: Bayesian Estimation of Structural Vector Autoregressive Models. 
+#' R package version 4.0, <doi:10.32614/CRAN.package.bsvars>.
 #' 
 #' @examples
 #' # simple workflow
